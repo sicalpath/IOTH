@@ -3094,6 +3094,36 @@ bool InitBlockIndex() {
     if (!fReindex) {
         try {
             CBlock &block = const_cast<CBlock&>(Params().GenesisBlock());
+
+uint256 bnTarget;
+bool fNegative;
+bool fOverflow;
+uint256 hashGenesisBlock;
+block.nBits    = 0x1f00ffff;
+bnTarget.SetCompact(block.nBits, &fNegative, &fOverflow);
+LogPrintf("ProofOfWorkLimit %s\n", Params().ProofOfWorkLimit().ToString());
+if (fNegative || bnTarget == 0 || fOverflow || bnTarget > Params().ProofOfWorkLimit()) {
+    error("InitBlockIndex CheckProofOfWork() : nBits below minimum work");
+}else {
+    block.nTime    = GetTime();//1231006505;
+    LogPrintf("block.nTime %d\n", block.nTime);
+    LogPrintf("bnTarget %s\n", bnTarget.ToString());
+    block.nNonce = 0;
+    while (true) {
+        if (block.nNonce%1000000000 == 0)
+            LogPrintf("block.nNonce--- %d\n", block.nNonce);
+        hashGenesisBlock = block.GetHash();
+        if (hashGenesisBlock <= bnTarget)
+            break;
+        block.nNonce++;
+    }
+    LogPrintf("block.nNonce******** %d\n", block.nNonce);
+    LogPrintf("hashGenesisBlock******** %s\n", hashGenesisBlock.ToString());
+    LogPrintf("hashMerkleRoot******** %s\n", block.hashMerkleRoot.ToString());
+}
+
+
+
             // Start new block file
             unsigned int nBlockSize = ::GetSerializeSize(block, SER_DISK, CLIENT_VERSION);
             CDiskBlockPos blockPos;
