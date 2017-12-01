@@ -53,7 +53,7 @@ static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
-        ( 0 , uint256S("0x46bc9e87e3f95affa2897376af4a6bef8dc6c89d8295bbc76855c4edf4276062"))
+        ( 0 , uint256S("0x5dbc009c18b823822dfb037b717c4cdf7a2e43fd3b5f2a313c55a92272a59685"))
         ;
 static const Checkpoints::CCheckpointData data = {
         &mapCheckpoints,
@@ -65,7 +65,7 @@ static const Checkpoints::CCheckpointData data = {
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
         boost::assign::map_list_of
-        ( 0, uint256S("0x46bc9e87e3f95affa2897376af4a6bef8dc6c89d8295bbc76855c4edf4276062"))
+        ( 0, uint256S("0x0002"))
         ;
 static const Checkpoints::CCheckpointData dataTestnet = {
         &mapCheckpointsTestnet,
@@ -76,7 +76,7 @@ static const Checkpoints::CCheckpointData dataTestnet = {
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
         boost::assign::map_list_of
-        ( 0, uint256S("0x46bc9e87e3f95affa2897376af4a6bef8dc6c89d8295bbc76855c4edf4276062"))
+        ( 0, uint256S("0x0003"))
         ;
 static const Checkpoints::CCheckpointData dataRegtest = {
         &mapCheckpointsRegtest,
@@ -141,7 +141,7 @@ public:
         // nonce: 1456993276
         // genesis hash: 000000004df0288b461e17d9a20e557fd296861c604f1944eb9e2cca866af0a5
 
-        const char* pszTimestamp = "shanghai stock index closed at 2343.57, on 30th Dec., 2017";
+        const char* pszTimestamp = "fuck youall i want a lot of money, on 30th Dec., 2017";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -151,14 +151,14 @@ public:
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock.SetNull();
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
-        genesis.nVersion = 1;
-        genesis.nTime    = 1512028893;
+        genesis.nVersion = 3;
+        genesis.nTime    = 1512034972;
         genesis.nBits    = 0x1e0ffff0;
-        genesis.nNonce   = 2057020657;
+        genesis.nNonce   = 515361;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256S("0x46bc9e87e3f95affa2897376af4a6bef8dc6c89d8295bbc76855c4edf4276062"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc32db221087ab2a75691799019f78ce7e20d834438c6a7d5bd5eb262e74cc34e"));
+        assert(hashGenesisBlock == uint256S("0x5dbc009c18b823822dfb037b717c4cdf7a2e43fd3b5f2a313c55a92272a59685"));
+        assert(genesis.hashMerkleRoot == uint256S("0xa768162d9505939752f23bf923f7a19f9e2166e71c4fdf96b455b51dc06bcde0"));
 
         //vSeeds.push_back(CDNSSeedData("bitcoin.sipa.be", "seed.bitcoin.sipa.be"));
         //vSeeds.push_back(CDNSSeedData("bluematt.me", "dnsseed.bluematt.me"));
